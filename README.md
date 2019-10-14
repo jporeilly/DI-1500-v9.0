@@ -8,12 +8,11 @@
 
 The following software need to be installed and configured:
 ```
-Pentaho Business Analytics 8.1.x
-Java JDK 9.0.x
-Docker Toolbox
-Confluent 5.x
-Kafka Tool 2.x
-MQTT.fx
+Pentaho Business Analytics 8.3.x
+Java JDK 1.8.0_212
+Confluent 5.2.2
+Kafka Tool 2.0.4
+MQTT.fx 1.71
 Git / GitHub
 Visual Studio Code
 R
@@ -39,20 +38,19 @@ On completing this course, you will be able to:
 #### Module 2 - PDI as a Data Source
 ```
   Configure PDI as a datasource for various scenarios:
-  * Pentaho Reports step
-  * Google BQ & Drive
   * CDA
-  * Machine Learning
+  * Google BQ & Drive
+  * Snowflake
   * Data Services
+  * Machine Learning
 ```  
 
 #### Module 3 - Streaming Data
 ```
-  Implement a MQTT Broker
-  * Stream GPS co-ordinates to PDI to demonstrate IoT
-  * Use Case - Racing Cars
-  Implement Kafka
-  * Use Case - Twitter Stream - you will need a twitter account
+  Stream SensorData to:
+  * MQTT Broker
+  * Kafka
+  * Amazon Kinesis
 ```
 
 #### Module 4 - Scalability
@@ -66,14 +64,5 @@ On completing this course, you will be able to:
 
 ### Getting Started
 
-[Course Materials](https://jporeilly.github.io/Pentaho-Training/scripts/course_materials.cmd) - Batch script for GitHub repositories *Requires Git to be installed.
+[Course Materials](https://jporeilly.github.io/Pentaho-Training/scripts/DI-1500_v8.3.cmd.cmd) - Batch script for GitHub repositories *Requires Git to be installed.
 
-[Software](https://www.dropbox.com/sh/6nl31ts10sjimnr/AADFXjTek4f9ANyBivVVAhqFa?dl=0) - Shared File on DropBox
-
-
-#### Acknowledgments
-```
-Beppe Raymaekers
-Morgan Senechal
-Caio Moreno de Souza
-```
