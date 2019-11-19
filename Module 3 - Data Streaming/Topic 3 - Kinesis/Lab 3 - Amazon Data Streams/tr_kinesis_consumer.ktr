@@ -440,8 +440,8 @@
 that will utilize the 'Get records from stream' Step</note>
       <xloc>336</xloc>
       <yloc>176</yloc>
-      <width>446</width>
-      <heigth>58</heigth>
+      <width>304</width>
+      <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -461,10 +461,10 @@ that will utilize the 'Get records from stream' Step</note>
       <note>Message Type: String
 Authentication: .aws file
 Application: managed DynamoDB Table</note>
-      <xloc>544</xloc>
-      <yloc>400</yloc>
-      <width>326</width>
-      <heigth>82</heigth>
+      <xloc>336</xloc>
+      <yloc>336</yloc>
+      <width>221</width>
+      <heigth>58</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -488,10 +488,10 @@ Application: managed DynamoDB Table</note>
     TRIM_HORIZON - Start reading at the last untrimmed record in the shard in the system, which is the oldest data record in the shard.
 
     LATEST - Start reading just after the most recent record in the shard, so that you always read the most recent data in the shard.</note>
-      <xloc>96</xloc>
-      <yloc>544</yloc>
-      <width>1068</width>
-      <heigth>181</heigth>
+      <xloc>160</xloc>
+      <yloc>448</yloc>
+      <width>712</width>
+      <heigth>119</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -505,6 +505,27 @@ Application: managed DynamoDB Table</note>
       <bordercolorred>0</bordercolorred>
       <bordercolorgreen>128</bordercolorgreen>
       <bordercolorblue>0</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Lab 3: Amazon Kinesis</note>
+      <xloc>336</xloc>
+      <yloc>96</yloc>
+      <width>239</width>
+      <heigth>40</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>255</bordercolorred>
+      <bordercolorgreen>255</bordercolorgreen>
+      <bordercolorblue>255</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
@@ -551,7 +572,7 @@ Application: managed DynamoDB Table</note>
           <value xsi:type="xs:string">SensorData</value>
         </property>
         <property group="" name="APPLICATION_NAME">
-          <value xsi:type="xs:string">IoT</value>
+          <value xsi:type="xs:string">SensorData</value>
         </property>
         <property group="" name="USE_ENHANCED_FANOUT">
           <value xsi:type="xs:string">false</value>
@@ -581,7 +602,7 @@ Application: managed DynamoDB Table</note>
           <value xsi:type="xs:string">1000</value>
         </property>
         <property group="" name="SUB_STEP">
-          <value xsi:type="xs:string">tfo-sensor_data</value>
+          <value xsi:type="xs:string"/>
         </property>
         <property group="" name="PARALLELISM">
           <value xsi:type="xs:string">1</value>
@@ -597,8 +618,8 @@ Application: managed DynamoDB Table</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>288</yloc>
+      <xloc>464</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
