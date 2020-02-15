@@ -439,7 +439,7 @@
       <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via Kinesis Producer step</note>
       <xloc>176</xloc>
       <yloc>720</yloc>
-      <width>591</width>
+      <width>601</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -461,7 +461,7 @@
 output, simulating IoT</note>
       <xloc>64</xloc>
       <yloc>208</yloc>
-      <width>173</width>
+      <width>177</width>
       <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -482,7 +482,7 @@ output, simulating IoT</note>
       <note>Records being batched in 5 sec intervals</note>
       <xloc>64</xloc>
       <yloc>448</yloc>
-      <width>221</width>
+      <width>225</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -504,7 +504,7 @@ output, simulating IoT</note>
 .aws folder</note>
       <xloc>1120</xloc>
       <yloc>496</yloc>
-      <width>144</width>
+      <width>146</width>
       <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -697,7 +697,7 @@ output, simulating IoT</note>
           <value xsi:type="xs:boolean">false</value>
         </property>
         <property group="" name="STREAM_NAME">
-          <value xsi:type="xs:string">SensorData</value>
+          <value xsi:type="xs:string">Test</value>
         </property>
         <property group="" name="STREAM_FIELD_NAME">
           <value xsi:type="xs:string"/>

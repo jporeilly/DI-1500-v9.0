@@ -440,7 +440,7 @@
 that will utilize the 'Get records from stream' Step</note>
       <xloc>336</xloc>
       <yloc>176</yloc>
-      <width>304</width>
+      <width>306</width>
       <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -490,8 +490,8 @@ Application: managed DynamoDB Table</note>
     LATEST - Start reading just after the most recent record in the shard, so that you always read the most recent data in the shard.</note>
       <xloc>160</xloc>
       <yloc>448</yloc>
-      <width>712</width>
-      <heigth>119</heigth>
+      <width>727</width>
+      <heigth>122</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -569,10 +569,10 @@ Application: managed DynamoDB Table</note>
           <value xsi:type="xs:string">0</value>
         </property>
         <property group="" name="STREAM_NAME">
-          <value xsi:type="xs:string">SensorData</value>
+          <value xsi:type="xs:string">Test</value>
         </property>
         <property group="" name="APPLICATION_NAME">
-          <value xsi:type="xs:string">SensorData</value>
+          <value xsi:type="xs:string">Test</value>
         </property>
         <property group="" name="USE_ENHANCED_FANOUT">
           <value xsi:type="xs:string">false</value>
