@@ -1,5 +1,5 @@
 
-# Advanced Pentaho Data Integration v8.3
+# Advanced Pentaho Data Integration v9.0
   This course is designed to build upon your fundamental knowledge of Pentaho Data Integration (PDI).   
   Moving beyond the basics of creating transformations and jobs, you will learn how to use PDI in real-world project scenarios.
   You'll add PDI as a data source for a variety of visualization options, utilize PDI's streaming data processing capabilties, build transformations with metadata injection, and scale and performance tune your PDI solution.
