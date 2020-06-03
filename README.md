@@ -8,16 +8,15 @@
 
 The following software need to be installed and configured:
 ```
-Pentaho Business Analytics 8.3.x
-Java JDK 1.8.0_212
-Confluent 5.2.2
+Pentaho Business Analytics 9.0.x
+OpenJDK 14
+Apache Kafka 2.5.0
 Kafka Tool 2.0.4
 MQTT.fx 1.71
-Git / GitHub
 Visual Studio Code
-R
+R 4.0.0
 RStudio
-Python 2.7
+Python 3.8.3
 ```
 
 ### Course Overview
@@ -64,5 +63,5 @@ On completing this course, you will be able to:
 
 ### Getting Started
 
-[Course Materials](https://jporeilly.github.io/Pentaho-Training/scripts/DI-1500_v8.3.cmd.cmd) - Batch script for GitHub repositories *Requires Git to be installed.
+[Course Materials](https://jporeilly.github.io/Pentaho-Training/scripts/DI-1500_v9.0.cmd) - Batch script for GitHub repositories *Requires Git to be installed.
 
