@@ -11,8 +11,8 @@ The following software need to be installed and configured:
 Pentaho Business Analytics 9.0.x
 OpenJDK 14
 Apache Kafka 2.5.0
-Kafka Tool 2.0.4
-MQTT.fx 1.71
+Kafka Tool 2.0.7
+MQTT.fx 1.72
 Visual Studio Code
 R 4.0.0
 RStudio
