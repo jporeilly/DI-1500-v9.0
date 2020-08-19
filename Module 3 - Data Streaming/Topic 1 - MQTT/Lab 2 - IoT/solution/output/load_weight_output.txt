@@ -1,0 +1,8 @@
+111	3	3	9856	1	0	Load_Weight
+111	3	3	9738	1	0	Load_Weight
+111	3	3	9876	1	0	Load_Weight
+111	3	3	10005	0	0	Load_Weight
+111	3	3	10223	0	0	Load_Weight
+111	3	3	9309	1	0	Load_Weight
+111	3	3	10400	0	0	Load_Weight
+111	3	3	10194	0	0	Load_Weight

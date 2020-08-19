@@ -1,0 +1,10 @@
+111	1	1	77	0	0	Temperature
+111	1	1	84	1	0	Temperature
+111	1	1	73	0	0	Temperature
+111	1	1	83	1	0	Temperature
+111	1	1	53	0	0	Temperature
+111	1	1	82	1	0	Temperature
+111	1	1	78	0	0	Temperature
+111	1	1	66	0	0	Temperature
+111	1	1	88	1	0	Temperature
+111	1	1	85	1	0	Temperature

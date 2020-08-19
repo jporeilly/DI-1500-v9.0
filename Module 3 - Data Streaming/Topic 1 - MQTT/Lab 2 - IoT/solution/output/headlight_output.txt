@@ -1,0 +1,8 @@
+111	2	2	1080	0	0	Headlight  
+111	2	2	1304	0	1	Headlight  
+111	2	2	1434	0	1	Headlight  
+111	2	2	1023	0	0	Headlight  
+111	2	2	772	0	0	Headlight  
+111	2	2	1035	0	0	Headlight  
+111	2	2	1180	0	0	Headlight  
+111	2	2	891	0	0	Headlight  

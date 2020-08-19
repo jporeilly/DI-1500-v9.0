@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_mqtt_producer_sensor_data_gen</name>
+    <name>tr_mqtt_producer</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -436,11 +436,11 @@
   </info>
   <notepads>
     <notepad>
-      <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via MQTT Producer step</note>
-      <xloc>288</xloc>
-      <yloc>880</yloc>
-      <width>879</width>
-      <heigth>34</heigth>
+      <note>Transformation simulates IoT Sensor data which is published to the Topic: SensorData via MQTT Producer step.</note>
+      <xloc>192</xloc>
+      <yloc>528</yloc>
+      <width>588</width>
+      <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -459,10 +459,10 @@
     <notepad>
       <note>Step will never stop generating
 output, simulating IoT</note>
-      <xloc>176</xloc>
-      <yloc>368</yloc>
-      <width>254</width>
-      <heigth>58</heigth>
+      <xloc>80</xloc>
+      <yloc>144</yloc>
+      <width>173</width>
+      <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -479,11 +479,11 @@ output, simulating IoT</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Records being batched in 5 sec intervals</note>
-      <xloc>176</xloc>
-      <yloc>608</yloc>
-      <width>326</width>
-      <heigth>34</heigth>
+      <note>Records being batched in 5 sec intervals.</note>
+      <xloc>80</xloc>
+      <yloc>320</yloc>
+      <width>223</width>
+      <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -578,22 +578,17 @@ output, simulating IoT</note>
     </hop>
     <hop>
       <from>sv-define_metadata</from>
-      <to>cf-concat_message_field</to>
+      <to>Convert to JSON</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>cf-concat_message_field</from>
-      <to>sv-message</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sv-message</from>
+      <from>Convert to JSON</from>
       <to>MQTT producer</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>mjsv-air_pressure_sensor</name>
+    <name>Convert to JSON</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -611,444 +606,26 @@ output, simulating IoT</note>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>//Script here
 
-var sensor_id = 6;
-var sensor_type = 6;
+var messageObg={};
 
-// No big vibration should be felt
-var sensor_value = Math.floor(Math.random() * 5) + 30;
+messageObg.vehicle_id=vehicle_id;
+messageObg.timestamp=timestamp;
+messageObg.sensor_id=sensor_id;
+messageObg.sensor_type=sensor_type;
+messageObg.sensor_value=sensor_value;
+messageObg.minor_alert=minor_alert;
+messageObg.major_alert=major_alert;
 
-
-// minor alert -> hitting bumps in road
-var minor_alert = (sensor_value >= 34 ? 1 : 0);
-// should not happen while vehicle is moving
-var major_alert = (sensor_value &lt; 30 ? 1 : 0);
-
-</jsScript_script>
+var message=JSON.stringify(messageObg);</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>sensor_id</name>
-        <rename>sensor_id</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <rename>sensor_type</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <rename>sensor_value</rename>
+        <name>message</name>
+        <rename>message</rename>
         <type>String</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <rename>minor_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <rename>major_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>mjsv-axle_vibration_sensor</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var sensor_id = 4;
-var sensor_type = 4;
-
-// No big vibration should be felt
-var sensor_value = Math.floor(Math.random() * 20) + 80;
-
-// minor alert -> hitting bumps in road
-var minor_alert = (sensor_value > 75 ? 1 : 0);
-// should not happen while vehicle is moving
-var major_alert = (sensor_value > 90 ? 1 : 0);
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>sensor_id</name>
-        <rename>sensor_id</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <rename>sensor_type</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <rename>sensor_value</rename>
-        <type>String</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <rename>minor_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <rename>major_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>576</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dmmy-sensor_data_collector</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>912</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>cf-concat_message_field</name>
-    <type>ConcatFields</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>file</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>vehicle_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>sensor_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-      <targetFieldName>data_row</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1136</xloc>
-      <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>as-gen_timestamp</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>timestamp</valuename>
-    <use_database>N</use_database>
-    <connection/>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>20170401000000</start_at>
-    <increment_by>5</increment_by>
-    <max_value>99999999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>mjsv-headlight_sensor</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var sensor_id = 2;
-var sensor_type = 2;
-
-// cars headlights = 700 1200 lumens
-// minor alert = &lt; 750
-// major alert = > 1200 (short circuit?)
-var sensor_value = Math.floor(Math.random() * 800) + 700;
-
-var minor_alert = (sensor_value &lt;750 ? 1 : 0);
-var major_alert = (sensor_value > 1200 ? 1 : 0);
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>sensor_id</name>
-        <rename>sensor_id</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <rename>sensor_type</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <rename>sensor_value</rename>
-        <type>String</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <rename>minor_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <rename>major_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
         <replace>N</replace>
       </field>
     </fields>
@@ -1061,141 +638,8 @@ var major_alert = (sensor_value > 1200 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>gr-IoT_gateway</name>
-    <type>RowGenerator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>vehicle_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>111</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>Y</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>mjsv-load_weight_sensor</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var sensor_id = 3;
-var sensor_type = 3;
-
-// should only really have a big variation when the vehicle is loaded/offloaded
-var sensor_value = Math.floor(Math.random() * 1700) + 9000;
-
-// minor alert -> hitting bumps in road
-var minor_alert = (sensor_value &lt;10000 ? 1 : 0);
-// should not happen while vehicle is moving
-var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>sensor_id</name>
-        <rename>sensor_id</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_type</name>
-        <rename>sensor_type</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>sensor_value</name>
-        <rename>sensor_value</rename>
-        <type>String</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <rename>minor_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <rename>major_alert</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>704</xloc>
-      <yloc>416</yloc>
+      <xloc>928</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1309,14 +753,74 @@ var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1312</xloc>
-      <yloc>736</yloc>
+      <xloc>1040</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sv-define_metadata</name>
-    <type>SelectValues</type>
+    <name>as-gen_timestamp</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>timestamp</valuename>
+    <use_database>N</use_database>
+    <connection/>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>20170401000000</start_at>
+    <increment_by>5</increment_by>
+    <max_value>99999999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dmmy-sensor_data_collector</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>gr-IoT_gateway</name>
+    <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1326,126 +830,113 @@ var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
       <schema_name/>
     </partitioning>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>timestamp</name>
-        <rename>timestamp</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+      <field>
         <name>vehicle_id</name>
-        <rename>vehicle_id</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>111</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <limit>1</limit>
+    <never_ending>Y</never_ending>
+    <interval_in_ms>5000</interval_in_ms>
+    <row_time_field>now</row_time_field>
+    <last_time_field>FiveSecondsAgo</last_time_field>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-air_pressure_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 6;
+var sensor_type = 6;
+
+// No big vibration should be felt
+var sensor_value = Math.floor(Math.random() * 5) + 30;
+
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value >= 34 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value &lt; 30 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
         <name>sensor_id</name>
         <rename>sensor_id</rename>
-        <type>Integer</type>
+        <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
         <name>sensor_type</name>
         <rename>sensor_type</rename>
-        <type>Integer</type>
+        <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
         <name>sensor_value</name>
         <rename>sensor_value</rename>
         <type>String</type>
         <length>16</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
         <name>minor_alert</name>
         <rename>minor_alert</rename>
-        <type>Integer</type>
+        <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
         <name>major_alert</name>
         <rename>major_alert</rename>
-        <type>Integer</type>
+        <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1456,8 +947,97 @@ var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>496</yloc>
+      <xloc>464</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>mjsv-axle_vibration_sensor</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 4;
+var sensor_type = 4;
+
+// No big vibration should be felt
+var sensor_value = Math.floor(Math.random() * 20) + 80;
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value > 75 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value > 90 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1734,7 +1314,7 @@ var iteration = 0;
         <rename>sensor_id</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1742,7 +1322,7 @@ var iteration = 0;
         <rename>sensor_type</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1758,7 +1338,7 @@ var iteration = 0;
         <rename>minor_alert</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1766,7 +1346,7 @@ var iteration = 0;
         <rename>major_alert</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
     </fields>
@@ -1779,14 +1359,14 @@ var iteration = 0;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>784</yloc>
+      <xloc>464</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sv-message</name>
-    <type>SelectValues</type>
+    <name>mjsv-headlight_sensor</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1795,75 +1375,69 @@ var iteration = 0;
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 2;
+var sensor_type = 2;
+
+// cars headlights = 700 1200 lumens
+// minor alert = &lt; 750
+// major alert = > 1200 (short circuit?)
+var sensor_value = Math.floor(Math.random() * 800) + 700;
+
+var minor_alert = (sensor_value &lt;750 ? 1 : 0);
+var major_alert = (sensor_value > 1200 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
       <field>
-        <name>vehicle_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <rename/>
-      </field>
-      <field>
         <name>sensor_id</name>
-        <rename/>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>
       <field>
         <name>sensor_type</name>
-        <rename/>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>
       <field>
         <name>sensor_value</name>
-        <rename/>
-      </field>
-      <field>
-        <name>minor_alert</name>
-        <rename/>
-      </field>
-      <field>
-        <name>major_alert</name>
-        <rename/>
-      </field>
-      <field>
-        <name>data_row</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>timestamp</name>
-      </remove>
-      <remove>
-        <name>sensor_id</name>
-      </remove>
-      <remove>
-        <name>sensor_type</name>
-      </remove>
-      <remove>
-        <name>sensor_value</name>
-      </remove>
-      <remove>
-        <name>minor_alert</name>
-      </remove>
-      <remove>
-        <name>major_alert</name>
-      </remove>
-      <meta>
-        <name>data_row</name>
-        <rename>message</rename>
+        <rename>sensor_value</rename>
         <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1874,30 +1448,85 @@ var iteration = 0;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1136</xloc>
-      <yloc>736</yloc>
+      <xloc>464</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sv-remove_fields</name>
-    <type>SelectValues</type>
+    <name>mjsv-load_weight_sensor</name>
+    <type>ScriptValueMod</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var sensor_id = 3;
+var sensor_type = 3;
+
+// should only really have a big variation when the vehicle is loaded/offloaded
+var sensor_value = Math.floor(Math.random() * 1700) + 9000;
+
+// minor alert -> hitting bumps in road
+var minor_alert = (sensor_value &lt;10000 ? 1 : 0);
+// should not happen while vehicle is moving
+var major_alert = (sensor_value &lt; 2700 ? 1 : 0);
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>FiveSecondsAgo</name>
-      </remove>
-      <remove>
-        <name>now</name>
-      </remove>
+      <field>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1908,8 +1537,8 @@ var iteration = 0;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>496</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1949,7 +1578,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <rename>sensor_id</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1957,7 +1586,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <rename>sensor_type</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1965,7 +1594,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <rename>sensor_value</rename>
         <type>String</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1973,7 +1602,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <rename>minor_alert</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
@@ -1981,7 +1610,7 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
         <rename>major_alert</rename>
         <type>Number</type>
         <length>16</length>
-        <precision>2</precision>
+        <precision>-1</precision>
         <replace>N</replace>
       </field>
     </fields>
@@ -1994,8 +1623,172 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>192</yloc>
+      <xloc>464</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-define_metadata</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>vehicle_id</name>
+        <rename>vehicle_id</rename>
+        <type>Number</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_id</name>
+        <rename>sensor_id</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_type</name>
+        <rename>sensor_type</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>sensor_value</name>
+        <rename>sensor_value</rename>
+        <type>String</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>minor_alert</name>
+        <rename>minor_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>major_alert</name>
+        <rename>major_alert</rename>
+        <type>Number</type>
+        <length>16</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>sv-remove_fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>FiveSecondsAgo</name>
+      </remove>
+      <remove>
+        <name>now</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2014,58 +1807,6 @@ var major_alert = (sensor_value > 95 ? 1 : 0);
     </group>
     <group>
       <name>explorerState</name>
-      <attribute>
-        <key>mjsv-air_pressure_sensor</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>as-gen_timestamp</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>mjsv-axle_vibration_sensor</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>gr-IoT_gateway</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>mjsv-load_weight_sensor</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>sv-remove_fields</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>cf-concat_message_field</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>mjsv-headlight_sensor</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>sv-message</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>sv-define_metadata</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>dmmy-sensor_data_collector</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>mjsv-truck_temp_sensor</key>
-        <value/>
-      </attribute>
-      <attribute>
-        <key>mjsv-gps_sensor</key>
-        <value/>
-      </attribute>
     </group>
     <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
