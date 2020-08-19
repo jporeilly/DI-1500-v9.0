@@ -522,7 +522,7 @@ sub-transformation, that will utilize the 'Get records from stream' Step</note>
           <value xsi:type="xs:string">String</value>
         </property>
         <property group="" name="TRANSFORMATION_PATH">
-          <value xsi:type="xs:string">${Internal.Entry.Current.Directory}/tr_process_sensor_data.ktr</value>
+          <value xsi:type="xs:string">${Internal.Entry.Current.Directory}/tr_process_alert_data.ktr</value>
         </property>
         <property group="" name="NUM_MESSAGES">
           <value xsi:type="xs:string">50</value>

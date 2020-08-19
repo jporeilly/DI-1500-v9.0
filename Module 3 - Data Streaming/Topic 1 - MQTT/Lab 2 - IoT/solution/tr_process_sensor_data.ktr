@@ -523,7 +523,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/count_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/count_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -634,8 +634,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1150</xloc>
-      <yloc>550</yloc>
+      <xloc>1152</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -703,7 +703,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/headlight_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/headlight_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -992,7 +992,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/load_weight_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/load_weight_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1133,7 +1133,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/position_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/position_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1274,7 +1274,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/pressure_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/pressure_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1511,7 +1511,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/temperature_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/temperature_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1863,7 +1863,7 @@
     <fileNameField>partition</fileNameField>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}/output/vibration_output</name>
+      <name>${Internal.Entry.Current.Directory}/output/sensor/vibration_output</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>txt</extention>
