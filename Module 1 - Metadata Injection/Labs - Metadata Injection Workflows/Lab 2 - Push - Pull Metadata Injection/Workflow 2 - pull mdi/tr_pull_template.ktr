@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tr_2_phase_mdi_injected</name>
+    <name>tr_pull_template</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
-      <parameter>
-        <name>valuenumber</name>
-        <default_value>1</default_value>
-        <description>Sequence for illustrating parameter usage</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -432,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/07/03 10:12:30.977</created_date>
+    <created_date>2016/05/12 18:17:28.402</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/07/03 10:12:30.977</modified_date>
+    <modified_date>2016/05/12 18:17:28.402</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>Test data (could come from files, RDBMS etc.)</note>
-      <xloc>224</xloc>
-      <yloc>288</yloc>
-      <width>251</width>
+      <note>Metadata Injection into the Select values step only.</note>
+      <xloc>352</xloc>
+      <yloc>368</yloc>
+      <width>277</width>
       <heigth>26</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -461,38 +457,14 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>For demonstration we are injection 
-metadata into the Select values step only.</note>
-      <xloc>336</xloc>
-      <yloc>416</yloc>
-      <width>228</width>
-      <heigth>42</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>255</backgroundcolorgreen>
-      <backgroundcolorblue>255</backgroundcolorblue>
-      <bordercolorred>192</bordercolorred>
-      <bordercolorgreen>192</bordercolorgreen>
-      <bordercolorblue>192</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>Simple template example for "Two Phase Processing - Phase 1"
+      <note>Simple template example for "MDI Data Flow" - Pull data back from the template to the parent transformation
 
-- Input and Output are within this template
-- The metadata get injected and stored in a new transformation (but not executed)
-- The execution will happen at a later time
-- To illustrate the different runs, we are using a parameter called ${sequence} that we add to the filename</note>
-      <xloc>192</xloc>
-      <yloc>80</yloc>
-      <width>561</width>
-      <heigth>105</heigth>
+- Input is within template
+- Output data get streamed back to the parent transformation</note>
+      <xloc>176</xloc>
+      <yloc>112</yloc>
+      <width>883</width>
+      <heigth>107</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -509,13 +481,15 @@ metadata into the Select values step only.</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Get the data into [...]_output_${sequence}.txt
+      <note>The resulting dataset is streamed back
+into the parent transformation
 
-A different file gets created for every run.</note>
-      <xloc>256</xloc>
-      <yloc>496</yloc>
-      <width>246</width>
-      <heigth>57</heigth>
+(Dummy step for illustration, this
+could be any step)</note>
+      <xloc>352</xloc>
+      <yloc>432</yloc>
+      <width>211</width>
+      <heigth>89</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -532,10 +506,10 @@ A different file gets created for every run.</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Lab 3: 2-Phase</note>
-      <xloc>192</xloc>
-      <yloc>32</yloc>
-      <width>100</width>
+      <note>Lab 2: Metadata Injection - Pull </note>
+      <xloc>176</xloc>
+      <yloc>48</yloc>
+      <width>208</width>
       <heigth>28</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>10</fontsize>
@@ -552,21 +526,42 @@ A different file gets created for every run.</note>
       <bordercolorblue>255</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>Test data (could come from files, RDBMS etc.)</note>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
+      <width>251</width>
+      <heigth>26</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>192</bordercolorred>
+      <bordercolorgreen>192</bordercolorgreen>
+      <bordercolorblue>192</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>dg-test _data</from>
+      <from>dg-test_data</from>
       <to>sv-mdi</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>sv-mdi</from>
-      <to>tfo-output</to>
+      <to>dmmy-result</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>dg-test _data</name>
+    <name>dg-test_data</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -623,8 +618,33 @@ A different file gets created for every run.</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>352</yloc>
+      <xloc>192</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dmmy-result</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -641,40 +661,6 @@ A different file gets created for every run.</note>
     </partitioning>
     <fields>
       <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>integer</name>
-        <rename>mdi_integer</rename>
-        <type>None</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>string</name>
-        <rename>mdi_string</rename>
-        <type>None</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -685,65 +671,8 @@ A different file gets created for every run.</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>tfo-output</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>${Internal.Entry.Current.Directory}/${Internal.Transformation.Name}_output_${sequence}</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>352</yloc>
+      <xloc>352</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -752,5 +681,9 @@ A different file gets created for every run.</note>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes/>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+    </group>
+  </attributes>
 </transformation>
