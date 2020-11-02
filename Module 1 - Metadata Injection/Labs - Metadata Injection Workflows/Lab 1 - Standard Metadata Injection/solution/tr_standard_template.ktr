@@ -546,18 +546,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>integer</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>string</name>
+        <name>name</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -566,20 +555,33 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>email</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
     <data>
       <line>
-        <item>1</item>
-        <item>a</item>
+        <item>Peter Jones</item>
+        <item>pj@email.com</item>
       </line>
       <line>
-        <item>2</item>
-        <item>b</item>
+        <item>Sean Andrews</item>
+        <item>sa@email.com</item>
       </line>
       <line>
-        <item>3</item>
-        <item>c</item>
+        <item>James Brown</item>
+        <item>jb@email.com</item>
       </line>
     </data>
     <attributes/>

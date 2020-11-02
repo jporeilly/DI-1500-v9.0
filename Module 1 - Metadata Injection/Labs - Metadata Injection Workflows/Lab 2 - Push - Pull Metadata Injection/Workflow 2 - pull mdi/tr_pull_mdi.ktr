@@ -577,7 +577,7 @@ design time.</note>
     </partitioning>
     <fields>
       <field>
-        <name>fieldname</name>
+        <name>source_fieldname</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -586,9 +586,10 @@ design time.</note>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
-        <name>mdi_fieldname</name>
+        <name>dest_fieldname</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -597,16 +598,17 @@ design time.</note>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
     <data>
       <line>
-        <item>integer</item>
-        <item>mdi_integer</item>
+        <item>name</item>
+        <item>contact</item>
       </line>
       <line>
-        <item>string</item>
-        <item>mdi_string</item>
+        <item>email</item>
+        <item>org_email</item>
       </line>
     </data>
     <attributes/>
@@ -640,40 +642,12 @@ design time.</note>
     <filename>${Internal.Entry.Current.Directory}/tr_pull_template.ktr</filename>
     <directory_path/>
     <source_step>dmmy-result</source_step>
-    <source_output_fields>
-      <source_output_field>
-        <source_output_field_name>mdi_integer</source_output_field_name>
-        <source_output_field_type>Integer</source_output_field_type>
-        <source_output_field_length>-1</source_output_field_length>
-        <source_output_field_precision>-1</source_output_field_precision>
-      </source_output_field>
-      <source_output_field>
-        <source_output_field_name>mdi_string</source_output_field_name>
-        <source_output_field_type>String</source_output_field_type>
-        <source_output_field_length>-1</source_output_field_length>
-        <source_output_field_precision>-1</source_output_field_precision>
-      </source_output_field>
-    </source_output_fields>
+    <source_output_fields>    </source_output_fields>
     <target_file/>
     <no_execution>N</no_execution>
     <stream_source_step/>
     <stream_target_step/>
-    <mappings>
-      <mapping>
-        <target_step_name>sv-mdi</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>dg-metadata</source_step>
-        <source_field>fieldname</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>sv-mdi</target_step_name>
-        <target_attribute_key>META_RENAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>dg-metadata</source_step>
-        <source_field>mdi_fieldname</source_field>
-      </mapping>
-    </mappings>
+    <mappings>    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>

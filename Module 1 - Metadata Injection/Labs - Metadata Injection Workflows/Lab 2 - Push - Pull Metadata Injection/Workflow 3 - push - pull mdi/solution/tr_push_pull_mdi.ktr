@@ -571,13 +571,13 @@
   </notepads>
   <order>
     <hop>
-      <from>dg-metadata</from>
-      <to>emi-fieldname</to>
+      <from>emi-fieldname</from>
+      <to>tfo-output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>emi-fieldname</from>
-      <to>tfo-output</to>
+      <from>dg-metadata</from>
+      <to>emi-fieldname</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -586,128 +586,6 @@
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>dg-metadata</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>fieldname</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>mdi_fieldname</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>integer</item>
-        <item>mdi_integer</item>
-      </line>
-      <line>
-        <item>string</item>
-        <item>mdi_string</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dg-test_data</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>integer</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>string</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>1</item>
-        <item>a</item>
-      </line>
-      <line>
-        <item>2</item>
-        <item>b</item>
-      </line>
-      <line>
-        <item>3</item>
-        <item>c</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>emi-fieldname</name>
     <type>MetaInject</type>
@@ -741,22 +619,22 @@
     </source_output_fields>
     <target_file/>
     <no_execution>N</no_execution>
-    <stream_source_step>dg-test_data</stream_source_step>
+    <stream_source_step/>
     <stream_target_step>dmmy-input</stream_target_step>
     <mappings>
-      <mapping>
-        <target_step_name>sv-mdi</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>dg-metadata</source_step>
-        <source_field>fieldname</source_field>
-      </mapping>
       <mapping>
         <target_step_name>sv-mdi</target_step_name>
         <target_attribute_key>META_RENAME</target_attribute_key>
         <target_detail>Y</target_detail>
         <source_step>dg-metadata</source_step>
-        <source_field>mdi_fieldname</source_field>
+        <source_field>dest_fieldname</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>sv-mdi</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>dg-metadata</source_step>
+        <source_field>source_fieldname</source_field>
       </mapping>
     </mappings>
     <attributes/>
@@ -826,6 +704,132 @@
     </remotesteps>
     <GUI>
       <xloc>688</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dg-metadata</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source_fieldname</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>dest_fieldname</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>name</item>
+        <item>contact</item>
+      </line>
+      <line>
+        <item>email</item>
+        <item>org_email</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dg-test_data</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>email</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>Peter Jones</item>
+        <item>pj@email.com</item>
+      </line>
+      <line>
+        <item>Sean Andrews</item>
+        <item>sa@email.com</item>
+      </line>
+      <line>
+        <item>James Brown</item>
+        <item>jb@email.com</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
